@@ -39,6 +39,9 @@ create user nameUser password expire default;
 create user nameUser password expire never;
 create user nameUser password expire interval N day;-- N es el número de días a expirar
 
+/* Nota: no se abordan los temas de TSL_options ni tampoco lock_options pero en la
+documentación de MariaDB se puede profundizar en ellos. */
+
 -- /-----------------------------------------------------------------------------------------/
 
 -- Ejemplos
