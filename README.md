@@ -1,6 +1,6 @@
 # Concept Mariadb SQL Documentation
 
-##Guía Conceptos Mysql MariaDB
+## Guía Conceptos Mysql MariaDB
 El presente repositorío hace referencia a una guía en la cual se visualizan
 los conceptos más importante de utilizar la base de datos relacional MySQL con el
 motor de mariaDB donde se va ir reflejando todo el conocimiento que ya previamente
@@ -12,7 +12,7 @@ no solamente para satisfacción propia sino también para las demás personas
 que puedan tener acceso a este repositorio para de esta manera ir de a poco
 complementando la información y conocimientos entre todos como comunidad DEVS.
 
-##Tabla de Contenido
+## Tabla de Contenido
 -Trabajando con usuarios
 -     "      "  base de datos
 -     "      "  tablas
@@ -21,4 +21,4 @@ complementando la información y conocimientos entre todos como comunidad DEVS.
 
 y muchas otras cosas más.
 
-#¡Qué comience el viaje a MySQL!
+# ¡Qué comience el viaje a MySQL!
