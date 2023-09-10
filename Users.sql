@@ -88,6 +88,17 @@ aplicadas estas restriciones a los usuarios que se indiquen en esa consulta(quer
 alter user createUser identified by '789456';
 alter user current_user() identified by '789456';-- current_user() obtiene el usuario con el que se inicio sección en la base de datos.
 
+-- permite verificar la existencia del usuario, en caso contrario mostrará una advertencia.
+alter user if exists 'createUser'@'IPHost' identified by '789';
+-- OR
+alter user if exists createUser identified by '789';-- forma resumida.
+
+-- permite cambiar o agregar un máximo de acciones a realizar por el usuario.
+alter user createUser, createUser2, createUserN with MAX_USER_CONNECTIONS 127;
+-- OR
+alter user createUser, createUser2, createUserN with MAX_USER_CONNECTIONS 127 password expire;
+
+
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 
 -- 1.
@@ -96,5 +107,62 @@ alter user 'testQA'@'%' identified by '36987';
 alter user testQA identified by '789456';-- forma resumida
 
 -- 2.
+alter user if exists dev4 identified by '789';
+-- OR
+alter user if exists 'dev4'@'%' identified by '789';
+show warnings;
 
+-- 3.
+alter user dev1 identified by '123', dev2, dev4 with MAX_USER_CONNECTIONS 127;-- muestra error.
+alter user if exists dev1 identified by '123', dev2, dev4 with MAX_USER_CONNECTIONS 127;-- muestra warnings.
+show warnings;
+
+-- 4.
+alter user if exists dev3, dev2, dev4 with MAX_USER_CONNECTIONS 127 password expire;
+show warnings;
+
+-- |----------------------------------------END------------------------------------------|
+
+
+-- |-----------------------------RENAME USER SECTION COMMAND-----------------------------|
+-- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+-- |----------------------------------------END------------------------------------------|
+
+
+-- |---------------------------SET PASWORD USER SECTION COMMAND--------------------------|
+-- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+-- |----------------------------------------END------------------------------------------|
+
+
+-- |--------------------------------GRANT SECTION COMMAND--------------------------------|
+-- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+-- |----------------------------------------END------------------------------------------|
+
+
+-- |--------------------------------REVOKE SECTION COMMAND-------------------------------|
+-- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+-- |----------------------------------------END------------------------------------------|
+
+
+-- |-------------------------------DROP USER SECTION COMMAND-----------------------------|
+
+-- Las siguientes consultas(querys)
+-- permite eliminar uno o varios usuarios ya creados.
+drop user nameUser;
+-- OR
+drop user if exists nameUser;
+drop user if exists nameUser, nameUser2, nameUserN;
+
+-- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+
+-- 1.
+drop user if exists dev1, 'dev2'@'%', dev3, 'dev4'@'%';
+show warnings;
+select user, host, password from mysql.user;
+
+-- |----------------------------------------END------------------------------------------|
+
+
+-- |------------------------------ALTER USER SECTION COMMAND-----------------------------|
+-- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 -- |----------------------------------------END------------------------------------------|
