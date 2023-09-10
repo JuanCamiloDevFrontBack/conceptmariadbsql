@@ -125,7 +125,42 @@ show warnings;
 
 
 -- |-----------------------------RENAME USER SECTION COMMAND-----------------------------|
+
+-- Las siguientes consultas(querys)
+-- permite cambiar el nombre de un usuario.
+rename user oldCreateUser to newCreateUser;
+-- OR
+rename user
+oldCreateUser to newCreateUser,
+oldCreateUser2 to newCreateUser2,
+oldCreateUserN to newCreateUserN;-- (opcional)
+rename user 'createUser'@'oldHost' to 'createUser'@'newHost';-- cambia la ip del host. (opcional)
+
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+
+-- 1.
+create user 'user1'@'localhost', dev1, 'technicalLeader'@'192.168.0.1';
+select user, host from mysql.user;
+rename user dev1 to scrumMaster;
+select user, host from mysql.user;
+
+--2.
+rename user scrumMaster to 'scrumMaster'@'192.168.0.7';
+select user, host from mysql.user;
+rename user 'scrumMaster'@'192.168.10.7' to 'scrumMaster2'@'192.168.10.7', 'user1'@'localhost' to userDev1;
+select user, host from mysql.user;
+
+/* Nota: los usuarios que tengan un host diferente a %
+presentan algunos detalles cuando se van a renombrar o efectuar alguna acción,
+si este es el caso, a la hora de hacer cualquier cosa con esos usuarios
+se deben utilizar con la ip, por ejemplo: 'nameUser'@'ipHost'. */
+
+-- 3.(da un ejemplo práctico de la nota anterior).
+/* muestra error porque los host no coinciden, esto porque al utilizar solo el nombre
+por defecto el motor de mariaDB le antepone el host % */
+show create user technicalLeader; 
+show create user 'technicalLeader'@'192.168.0.1';-- como se le indica el host, funciona.
+
 -- |----------------------------------------END------------------------------------------|
 
 
