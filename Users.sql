@@ -8,6 +8,9 @@ Nota: algunas funciones se pueden ejecutar mucho más rápido utilizando gestore
 de bases de datos, en el caso de xampp mariadb ya incorpora phpMyAdmin 
 */
 
+
+-- |-----------------------------CREATE USER SECTION COMMAND-----------------------------|
+
 -- Las siguientes consultas(querys)
 -- permite mostrar las columnas de cualquier tabla con información más detallada.
 describe nameTabla;
@@ -57,9 +60,8 @@ show warnings;
 /* Nota: no se abordan los temas de TSL_options ni tampoco lock_options pero en la
 documentación de MariaDB se puede profundizar en ellos. */
 
--- /-----------------------------------------------------------------------------------------/
+-- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 
--- Ejemplos
 -- 1.
 create user if not exists
 'adminMain'@'%' identified by '123456', 'testQA'@'%' identified by '123456'
@@ -75,3 +77,24 @@ create or replace user dev3 password expire default;
 /* Nota: en los ejercicios 1 y 2 al anidar la creación de usuarios los comandos
 "password expire" y "with" solo se permiten implementar al final, esto porque serán
 aplicadas estas restriciones a los usuarios que se indiquen en esa consulta(query). */
+
+-- |----------------------------------------END------------------------------------------|
+
+
+-- |------------------------------ALTER USER SECTION COMMAND-----------------------------|
+
+-- Las siguientes consultas(querys)
+-- permite modificar un usuario ya creado.
+alter user createUser identified by '789456';
+alter user current_user() identified by '789456';-- current_user() obtiene el usuario con el que se inicio sección en la base de datos.
+
+-- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+
+-- 1.
+alter user 'testQA'@'%' identified by '36987';
+-- OR
+alter user testQA identified by '789456';-- forma resumida
+
+-- 2.
+
+-- |----------------------------------------END------------------------------------------|
