@@ -182,6 +182,11 @@ select user, host, password from mysql.user;
 
 
 -- |------------------------------CREATE ROLE SECTION COMMAND----------------------------|
+
+-- Las siguientes consultas(querys)
+-- permite consultar los roles creados y existentes.
+select * from information_schema.applicable_roles;
+
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 -- |----------------------------------------END------------------------------------------|
 
