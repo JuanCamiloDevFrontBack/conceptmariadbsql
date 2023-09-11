@@ -85,13 +85,13 @@ aplicadas estas restriciones a los usuarios que se indiquen en esa consulta(quer
 
 -- Las siguientes consultas(querys)
 -- permite modificar un usuario ya creado.
-alter user createUser identified by '789456';
-alter user current_user() identified by '789456';-- current_user() obtiene el usuario con el que se inicio sección en la base de datos.
+alter user createUser identified by password;
+alter user current_user() identified by password;-- current_user() obtiene el usuario con el que se inicio sección en la base de datos.
 
 -- permite verificar la existencia del usuario, en caso contrario mostrará una advertencia.
-alter user if exists 'createUser'@'IPHost' identified by '789';
+alter user if exists 'createUser'@'IPHost' identified by password;
 -- OR
-alter user if exists createUser identified by '789';-- forma resumida.
+alter user if exists createUser identified by password;-- forma resumida.
 
 -- permite cambiar o agregar un máximo de acciones a realizar por el usuario.
 alter user createUser, createUser2, createUserN with MAX_USER_CONNECTIONS 127;
@@ -157,7 +157,7 @@ se deben utilizar con la ip, por ejemplo: 'nameUser'@'ipHost'. */
 
 -- 3.(da un ejemplo práctico de la nota anterior).
 /* muestra error porque los host no coinciden, esto porque al utilizar solo el nombre
-por defecto el motor de mariaDB le antepone el host % */
+por defecto el motor de mariaDB le asigna % como host  */
 show create user technicalLeader; 
 show create user 'technicalLeader'@'192.168.0.1';-- como se le indica el host, funciona.
 
@@ -165,12 +165,58 @@ show create user 'technicalLeader'@'192.168.0.1';-- como se le indica el host, f
 
 
 -- |---------------------------SET PASWORD USER SECTION COMMAND--------------------------|
+
+-- Las siguientes consultas(querys)
+-- permite cambiar o quitar la contraseña de un usuario.
+set password for createUser = password(newPassword);
+
+-- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+
+-- 1.
+set password for 'technicalLeader'@'192.168.0.1' = password('789456');
+select user, host, password from mysql.user;
+set password for 'technicalLeader'@'192.168.0.1' = password('');-- elimina la contraseña
+select user, host, password from mysql.user;
+
+-- |----------------------------------------END------------------------------------------|
+
+
+-- |------------------------------CREATE ROLE SECTION COMMAND----------------------------|
+-- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+-- |----------------------------------------END------------------------------------------|
+
+
+-- |----------------------------SET DEFAULT ROLE SECTION COMMAND-------------------------|
+-- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+-- |----------------------------------------END------------------------------------------|
+
+
+-- |-------------------------------SET ROLE SECTION COMMAND------------------------------|
+-- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+-- |----------------------------------------END------------------------------------------|
+
+
+-- |-------------------------------DROP ROLE SECTION COMMAND-----------------------------|
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 -- |----------------------------------------END------------------------------------------|
 
 
 -- |--------------------------------GRANT SECTION COMMAND--------------------------------|
+
+-- Las siguientes consultas(querys)
+-- permite visualizar los provilecios otorgados a un usuario o rol.
+show grants;-- muestra los privilegios otorgados al usuario con el cual se inicio sesión.
+show grants for (nameUser OR nameRol);
+-- OR
+show grants for current_user;
+show grants for current_user();
+
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+
+-- 1.
+show grants;
+show grants for testQA;
+
 -- |----------------------------------------END------------------------------------------|
 
 
