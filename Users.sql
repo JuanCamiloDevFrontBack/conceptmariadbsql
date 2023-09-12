@@ -217,7 +217,22 @@ genera error, pero al tener esa cláusula es trasnparente la ejecución. */
 
 
 -- |----------------------------SET DEFAULT ROLE SECTION COMMAND-------------------------|
+
+-- Las siguientes consultas(querys)
+-- permite configurar roles por defecto al usuario con el que inicio sesión.
+set default role nameRole;
+-- OR
+set default role none;
+
+-- permite indicar el usuario a realacionar con el rol por defecto.
+set default role nameRole for nameUser;
+
+
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+
+-- 1.
+
+
 -- |----------------------------------------END------------------------------------------|
 
 
@@ -236,7 +251,7 @@ genera error, pero al tener esa cláusula es trasnparente la ejecución. */
 -- Las siguientes consultas(querys)
 -- permite visualizar los provilecios otorgados a un usuario o rol.
 show grants;-- muestra los privilegios otorgados al usuario con el cual se inicio sesión.
-show grants for (nameUser OR nameRol);
+show grants for (nameUser OR nameRole);
 -- OR
 show grants for current_user;
 show grants for current_user();
