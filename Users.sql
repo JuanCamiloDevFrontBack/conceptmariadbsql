@@ -187,7 +187,32 @@ select user, host, password from mysql.user;
 -- permite consultar los roles creados y existentes.
 select * from information_schema.applicable_roles;
 
+-- permite crear un rol.
+create role nameRole;
+
+-- permite asignar un rol a las opciones que se especifican a continuación. (opcional)
+create or replace role if not exists nameRole with admin current_user;
+create or replace role if not exists nameRole with admin current_role;
+create or replace role if not exists nameRole with admin nameUser;
+create or replace role if not exists nameRole with admin nameRole;
+
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+
+-- 1.
+create role architect;
+select * from information_schema.applicable_roles;
+
+-- 2.
+create role architectRole;
+select * from information_schema.applicable_roles;
+create or replace role architectRole;
+select * from information_schema.applicable_roles;
+
+/* Nota: en el ejercicio 2 no es muy visible el (or replace), pero para
+comprobar que si funciona, se puede intentar crear por segunda vez el
+mismo rol sin usar esa cláusula(palabra reservada de sql) y se vera que
+genera error, pero al tener esa cláusula es trasnparente la ejecución. */
+
 -- |----------------------------------------END------------------------------------------|
 
 
