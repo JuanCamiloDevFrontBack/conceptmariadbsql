@@ -231,7 +231,11 @@ set default role nameRole for nameUser;
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 
 -- 1.
+set default role architectRole for 'technicalLeader'@'192.168.0.1';
 
+/* Nota: en el ejemplo 1 para el usuario technicalLeader se debe ingresar
+con el host, esto porque es diferente de un usuario que por el contrario
+tenga como host %, ya que a estos últimos no son necesarios especificar el host. */
 
 -- |----------------------------------------END------------------------------------------|
 
