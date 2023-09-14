@@ -39,6 +39,7 @@ create user nameUser1, nameUser2, ..., nameUserN;
 
 -- permite crear usuarios agregando una contraseña. (opcional)
 create user nameUser identified by '123';-- las '' son obligatorias.
+select password('password to consult');-- las '' son obligatorias y muestra la contraseña codificada.
 
 -- permite crear un limite de acciones a realizar por el usuario. (opcional)
 create user nameUser with MAX_QUERIES_PER_HOUR N;-- N es el número máximo de consultas.
@@ -63,16 +64,24 @@ documentación de MariaDB se puede profundizar en ellos. */
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 
 -- 1.
+select user, host from mysql.user;
 create user if not exists
-'adminMain'@'%' identified by '123456', 'testQA'@'%' identified by '123456'
+'adminMain'@'%' identified by '123456', 'testQA'@'%' identified by '654321'
 password expire interval 330 day;
+select user, host from mysql.user;
+show create user adminMain;
+show create user testQA;
 
 -- 2.
 create or replace user dev1, dev2 with MAX_QUERIES_PER_HOUR 78 MAX_UPDATES_PER_HOUR 59;
+show create user dev1;
+show create user dev2;
 
 -- 3.
 create or replace user dev3 password expire;
+show create user dev3;
 create or replace user dev3 password expire default;
+show create user dev3;
 
 /* Nota: en los ejercicios 1 y 2 al anidar la creación de usuarios los comandos
 "password expire" y "with" solo se permiten implementar al final, esto porque serán
@@ -102,9 +111,11 @@ alter user createUser, createUser2, createUserN with MAX_USER_CONNECTIONS 127 pa
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 
 -- 1.
+select user, host, password from mysql.user;
 alter user 'testQA'@'%' identified by '36987';
 -- OR
 alter user testQA identified by '789456';-- forma resumida
+select user, host, password from mysql.user;
 
 -- 2.
 alter user if exists dev4 identified by '789';
@@ -113,13 +124,22 @@ alter user if exists 'dev4'@'%' identified by '789';
 show warnings;
 
 -- 3.
+select user, host, password from mysql.user;
+show create user dev1;
+show create user dev2;
 alter user dev1 identified by '123', dev2, dev4 with MAX_USER_CONNECTIONS 127;-- muestra error.
 alter user if exists dev1 identified by '123', dev2, dev4 with MAX_USER_CONNECTIONS 127;-- muestra warnings.
 show warnings;
+show create user dev1;
+show create user dev2;
 
 -- 4.
+show create user dev2;
+show create user dev3;
 alter user if exists dev3, dev2, dev4 with MAX_USER_CONNECTIONS 127 password expire;
 show warnings;
+show create user dev2;
+show create user dev3;
 
 -- |----------------------------------------END------------------------------------------|
 
@@ -139,15 +159,17 @@ rename user 'createUser'@'oldHost' to 'createUser'@'newHost';-- cambia la ip del
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 
 -- 1.
-create user 'user1'@'localhost', dev1, 'technicalLeader'@'192.168.0.1';
 select user, host from mysql.user;
-rename user dev1 to scrumMaster;
+create user 'user1'@'localhost', devTest1, 'technicalLeader'@'192.168.0.1';
+select user, host from mysql.user;
+rename user devTest1 to scrumMaster;
 select user, host from mysql.user;
 
 --2.
+select user, host from mysql.user;
 rename user scrumMaster to 'scrumMaster'@'192.168.0.7';
 select user, host from mysql.user;
-rename user 'scrumMaster'@'192.168.10.7' to 'scrumMaster2'@'192.168.10.7', 'user1'@'localhost' to userDev1;
+rename user 'scrumMaster'@'192.168.0.7' to 'scrumMaster2'@'192.168.10.7', 'user1'@'localhost' to userDev1;
 select user, host from mysql.user;
 
 /* Nota: los usuarios que tengan un host diferente a %
@@ -173,6 +195,7 @@ set password for createUser = password(newPassword);
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 
 -- 1.
+select user, host, password from mysql.user;
 set password for 'technicalLeader'@'192.168.0.1' = password('789456');
 select user, host, password from mysql.user;
 set password for 'technicalLeader'@'192.168.0.1' = password('');-- elimina la contraseña
@@ -199,13 +222,16 @@ create or replace role if not exists nameRole with admin nameRole;
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 
 -- 1.
+select * from information_schema.applicable_roles;
 create role architect;
 select * from information_schema.applicable_roles;
+select user, host, is_role from mysql.user;
 
 -- 2.
-create role architectRole;
 select * from information_schema.applicable_roles;
-create or replace role architectRole;
+create role architectRole2;
+select * from information_schema.applicable_roles;
+create or replace role architectRole2;
 select * from information_schema.applicable_roles;
 
 /* Nota: en el ejercicio 2 no es muy visible el (or replace), pero para
