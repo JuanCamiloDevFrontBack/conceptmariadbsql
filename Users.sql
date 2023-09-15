@@ -169,7 +169,7 @@ select user, host from mysql.user;
 select user, host from mysql.user;
 rename user scrumMaster to 'scrumMaster'@'192.168.0.7';
 select user, host from mysql.user;
-rename user 'scrumMaster'@'192.168.0.7' to 'scrumMaster2'@'192.168.10.7', 'user1'@'localhost' to userDev1;
+rename user 'scrumMaster'@'192.168.0.7' to 'scrumMaster2'@'192.168.10.7', 'user1'@'localhost' to user1;
 select user, host from mysql.user;
 
 /* Nota: los usuarios que tengan un host diferente a %
@@ -229,15 +229,41 @@ select user, host, is_role from mysql.user;
 
 -- 2.
 select * from information_schema.applicable_roles;
-create role architectRole2;
+create role devFront;
 select * from information_schema.applicable_roles;
-create or replace role architectRole2;
+create or replace role devFront;
 select * from information_schema.applicable_roles;
 
 /* Nota: en el ejercicio 2 no es muy visible el (or replace), pero para
 comprobar que si funciona, se puede intentar crear por segunda vez el
 mismo rol sin usar esa cláusula(palabra reservada de sql) y se vera que
 genera error, pero al tener esa cláusula es trasnparente la ejecución. */
+
+-- |----------------------------------------END------------------------------------------|
+
+
+-- |--------------------------------GRANT SECTION COMMAND--------------------------------|
+
+-- |------show grants------|
+-- Las siguientes consultas(querys)
+-- permite visualizar los provilecios otorgados a un usuario o rol.
+show grants;-- muestra los privilegios otorgados al usuario con el cual se inicio sesión.
+show grants for (nameUser OR nameRole);
+-- OR
+show grants for current_user;
+show grants for current_user();
+
+-- |------grants------|
+
+
+-- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+
+-- 1.
+show grants;
+-- OR
+show grants for testQA;-- usuari creado en secciones anteriores.
+show grants for 'scrumMaster2'@'192.168.10.7';-- usuari creado en secciones anteriores.
+show grants for devFront;-- rol creado en la sección anterior.
 
 -- |----------------------------------------END------------------------------------------|
 
@@ -257,7 +283,16 @@ set default role nameRole for nameUser;
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 
 -- 1.
-set default role architectRole for 'technicalLeader'@'192.168.0.1';
+select user, host, is_role, default_role from mysql.user;
+set default role architect;
+select user, host, is_role, default_role from mysql.user;
+
+-- 2.
+select user, host, is_role, default_role from mysql.user;
+show grants for 'technicalLeader'@'192.168.0.1';
+grant architect to 'technicalLeader'@'192.168.0.1';-- es obligatorio darle los permisos al rol.
+set default role architect for 'technicalLeader'@'192.168.0.1';
+select user, host, is_role, default_role from mysql.user;
 
 /* Nota: en el ejemplo 1 para el usuario technicalLeader se debe ingresar
 con el host, esto porque es diferente de un usuario que por el contrario
@@ -273,25 +308,6 @@ tenga como host %, ya que a estos últimos no son necesarios especificar el host
 
 -- |-------------------------------DROP ROLE SECTION COMMAND-----------------------------|
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
--- |----------------------------------------END------------------------------------------|
-
-
--- |--------------------------------GRANT SECTION COMMAND--------------------------------|
-
--- Las siguientes consultas(querys)
--- permite visualizar los provilecios otorgados a un usuario o rol.
-show grants;-- muestra los privilegios otorgados al usuario con el cual se inicio sesión.
-show grants for (nameUser OR nameRole);
--- OR
-show grants for current_user;
-show grants for current_user();
-
--- |-----------------------------------EXAMPLE SECTION-----------------------------------|
-
--- 1.
-show grants;
-show grants for testQA;
-
 -- |----------------------------------------END------------------------------------------|
 
 
