@@ -255,11 +255,21 @@ show grants for current_user();
 
 -- |------grants------|
 -- permite otorgar permisos, privilegios y roles a un usuario.
-grant privilegeType on privilegeLevel to userName
+grant privilegeType on privilegeLevel to userName;
 -- OR
-grant privilegeType on nameDatabase.* to userName
-grant privilegeType on nameDatabase.nameTable to userName
-grant privilegeType on nameDatabase.nameTable to userName
+grant privilegeType on nameDatabase.* to userName;
+grant privilegeType on nameDatabase.nameTable to userName;
+
+-- tipos de privilegios.
+grant usage on nameDatabase.nameTable to userName;
+-- OR
+grant all privileges on nameDatabase.nameTable to userName;
+grant all privileges on nameDatabase.nameTable to userName1, userName2, userNameN;
+grant all on nameDatabase.nameTable to userName;-- forma resumida
+grant create, insert, select, privilegeTypeN on nameDatabase.nameTable to userName;
+
+-- permite asociar privilegios exclusivamente en las columnas de las tablas indicadas.
+grant update(column1, column2mn, columnN) on nameDatabase.nameTable to userName;
 
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 
