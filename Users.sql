@@ -257,8 +257,20 @@ show grants for current_user();
 -- permite otorgar permisos, privilegios y roles a un usuario.
 grant privilegeType on privilegeLevel to userName;
 -- OR
+grant privilegeType on privilegeLevel to userName with MAX_CONNECTIONS_PER_HOUR 78;
 grant privilegeType on nameDatabase.* to userName;
 grant privilegeType on nameDatabase.nameTable to userName;
+
+-- permite tener propiedad de otro usuario.
+grant proxy on userName to userName with grant option;
+-- OR
+grant proxy on userName to userName, userName2, userNameN;
+grant proxy on userName to userName, userName2, userNameN with grant option;
+grant proxy on userName to userName, userName2, userNameN with MAX_QUERIES_PER_HOUR 12;
+grant proxy on userName to userName with MAX_CONNECTIONS_PER_HOUR 12;
+grant proxy on userName to userName, userName2, userNameN with MAX_STATEMENT_TIME 12;
+grant proxy on userName to userName, userName2, userNameN with MAX_UPDATES_PER_HOUR 12;
+grant proxy on userName to userName with MAX_USER_CONNECTIONS 12 MAX_STATEMENT_TIME 12;
 
 -- tipos de privilegios.
 grant usage on nameDatabase.nameTable to userName;
@@ -271,11 +283,15 @@ grant create, insert, select, privilegeTypeN on nameDatabase.nameTable to userNa
 -- permite asociar privilegios exclusivamente en las columnas de las tablas indicadas.
 grant update(column1, column2mn, columnN) on nameDatabase.nameTable to userName;
 
+-- permite otorgar un mismo rol a diferentes usuarios.
+grant roleName to userName with admin option;
+
+/* Nota: no se abordan los temas de TSL_options ni tampoco object_type pero en la
+documentación de MariaDB se puede profundizar en ellos. */
+
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 
 -- 1.
-show grants;
--- OR
 show grants for testQA;-- usuari creado en secciones anteriores.
 show grants for 'scrumMaster2'@'192.168.10.7';-- usuari creado en secciones anteriores.
 show grants for devFront;-- rol creado en la sección anterior.
