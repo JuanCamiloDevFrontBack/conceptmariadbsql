@@ -273,7 +273,7 @@ grant proxy on userName to userName, userName2, userNameN with MAX_UPDATES_PER_H
 grant proxy on userName to userName with MAX_USER_CONNECTIONS 12 MAX_STATEMENT_TIME 12;
 
 -- tipos de privilegios.
-grant usage on nameDatabase.nameTable to userName;
+grant usage on nameDatabase.nameTable to userName;-- otorga el uso de *.* al usuario o rol
 -- OR
 grant all privileges on nameDatabase.nameTable to userName;
 grant all privileges on nameDatabase.nameTable to userName1, userName2, userNameN;
