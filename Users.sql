@@ -14,7 +14,9 @@ de bases de datos, en el caso de xampp mariadb ya incorpora phpMyAdmin
 -- Las siguientes consultas(querys)
 -- permite mostrar las columnas de cualquier tabla con información más detallada.
 describe nameTable;
+-- OR
 desc nameTable;-- forma resumida
+desc nameTable columnNameTable;
 
 -- permite consultar los usuarios creados y existentes en la base de datos.
 select * from mysql.user;
@@ -283,6 +285,9 @@ grant create, insert, select, privilegeTypeN on nameDatabase.nameTable to userNa
 -- permite asociar privilegios exclusivamente en las columnas de las tablas indicadas.
 grant update(column1, column2mn, columnN) on nameDatabase.nameTable to userName;
 
+-- permite crear un usuario implicitamente.
+grant privilegeType on *.* to userName;
+
 -- permite otorgar un mismo rol a diferentes usuarios.
 grant roleName to userName with admin option;
 
@@ -453,6 +458,11 @@ drop user if exists dev1, 'dev2'@'%', dev3, 'dev4'@'%';
 show warnings;
 select user, host, password from mysql.user;
 
+-- |----------------------------------------END------------------------------------------|
+
+
+-- |---------------------------------XYZ SECTION COMMAND---------------------------------|
+-- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 -- |----------------------------------------END------------------------------------------|
 
 
