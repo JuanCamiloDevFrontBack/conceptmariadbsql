@@ -292,9 +292,36 @@ documentación de MariaDB se puede profundizar en ellos. */
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 
 -- 1.
-show grants for testQA;-- usuari creado en secciones anteriores.
-show grants for 'scrumMaster2'@'192.168.10.7';-- usuari creado en secciones anteriores.
-show grants for devFront;-- rol creado en la sección anterior.
+-- Consultas ejecutadas con el usuario root.
+create user userPriv1, userPriv2;
+select user, host, is_role from mysql.user;
+show grants;
+show grants for userPriv1;
+/* el usuario anterior al crearlo por defecto tiene el siguiente privilegio o permiso:
+GRANT USAGE ON *.* TO `userPriv1`@`%` */
+
+-- Cierre sesión de root e inicie con cualquiera de los 2 usuarios creados previamente.
+-- Consultas ejecutadas con el usuario userPriv1.
+show grants for userPriv2;-- Acceso denegado, por falta de permisos
+select user, host, is_role from mysql.user;-- Acceso denegado, por falta de permisos
+grant all on *.* to current_user();-- Acceso denegado, por falta de permisos
+-- OR
+grant all on *.* to userPriv1;-- Acceso denegado, por falta de permisos
+
+-- Cierre sesión de userPriv1 e inicie como root.
+-- Consultas ejecutadas como usuario root.
+show grants for userPriv1;
+grant all on *.* to userPriv1;
+
+-- Cierre sesión de root e inicie con el usuario userPriv1 creado previamente.
+-- Consultas ejecutadas con el usuario userPriv1 esta vez con todos los privilegios comunes.
+show grants for userPriv2;
+select user, host, is_role from mysql.user;
+grant create, delete on *.* to current_user();-- Acceso denegado, por falta de permisos
+
+-- Cierre sesión de userPriv1 e inicie como root.
+-- Consultas ejecutadas como usuario root.
+grant all on *.* to userPriv1 with grant option;
 
 -- |----------------------------------------END------------------------------------------|
 
