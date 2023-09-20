@@ -323,6 +323,17 @@ grant create, delete on *.* to current_user();-- Acceso denegado, por falta de p
 -- Consultas ejecutadas como usuario root.
 grant all on *.* to userPriv1 with grant option;
 
+-- Cierre sesión de root e inicie con el usuario userPriv1 creado previamente.
+-- Consultas ejecutadas con el usuario userPriv1 con permisos de grant option.
+grant create, delete on bdtest.* to current_user();
+show grants for userPriv2;
+grant insert, update, delete on bdtest.* to userPriv2;
+
+/* Nota: tener encuenta que el comando GRANT tiene restricciones de uso para los
+usuarios diferentes a root, por tanto deben asignarle los permisos o privilegios
+correspondinetes a los usuarios a crear o creados con anterioridad
+si se desea utilizar con libertad. */
+
 -- |----------------------------------------END------------------------------------------|
 
 
