@@ -188,7 +188,7 @@ show create user 'technicalLeader'@'192.168.0.1';-- como se le indica el host, f
 -- |----------------------------------------END------------------------------------------|
 
 
--- |---------------------------SET PASWORD USER SECTION COMMAND--------------------------|
+-- |---------------------------SET PASSWORD USER SECTION COMMAND-------------------------|
 
 -- Las siguientes consultas(querys)
 -- permite cambiar o quitar la contraseña de un usuario.
@@ -458,11 +458,6 @@ drop user if exists dev1, 'dev2'@'%', dev3, 'dev4'@'%';
 show warnings;
 select user, host, password from mysql.user;
 
--- |----------------------------------------END------------------------------------------|
-
-
--- |---------------------------------XYZ SECTION COMMAND---------------------------------|
--- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 -- |----------------------------------------END------------------------------------------|
 
 
