@@ -353,7 +353,7 @@ set default role roleName for userName;
 
 -- 1.
 select user, host, is_role, default_role from mysql.user;
-set default role architect;
+set default role architect;-- rol creado en secciones anteriores.
 select user, host, is_role, default_role from mysql.user;
 
 -- 2.
@@ -371,17 +371,69 @@ tenga como host %, ya que a estos últimos no son necesarios especificar el host
 
 
 -- |-------------------------------SET ROLE SECTION COMMAND------------------------------|
+
+-- Las siguientes consultas(querys)
+-- permite configurar los roles al usuario con el que inicio sesión.
+set role roleName;
+-- OR
+set role none;
+
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+
+-- 1.
+select current_role;
+set role architect;
+select current_role;
+set role none;
+select current_role;
+
 -- |----------------------------------------END------------------------------------------|
 
 
 -- |-------------------------------DROP ROLE SECTION COMMAND-----------------------------|
+
+-- Las siguientes consultas(querys)
+-- permite eliminar uno o varios roles ya creados.
+drop role roleName;
+-- OR
+drop role if exists roleName;
+drop role if exists roleName, roleName2, roleNameN;
+
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+
+-- 1.
+drop role if exists dev1, 'dev2'@'%', dev3, 'dev4'@'%';
+show warnings;
+select user, host, password from mysql.user;
+
 -- |----------------------------------------END------------------------------------------|
 
 
 -- |--------------------------------REVOKE SECTION COMMAND-------------------------------|
+
+-- Las siguientes consultas(querys)
+-- permite eliminar uno o varios permisos previamente asignados.
+REVOKE privilegeType ON *.* FROM userName;
+-- OR
+REVOKE privilegeType1, privilegeType2, privilegeTypeN ON *.* FROM userName;
+REVOKE privilegeType1 ON *.* FROM userName, userName2, userNameN;
+
+-- permite eliminar o revocar roles asignados previamente.
+revoke roleName from userName;
+
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+
+-- 1.
+show grants;-- consulta los permisos del usuario de la sesión.
+revoke create on hola.* from userPriv1;
+revoke architect from userPriv1;-- revoca el rol asignado
+show grants;
+
+-- 2.
+show grants;
+revoke update on bdtest.* from userPriv2;
+show grants;
+
 -- |----------------------------------------END------------------------------------------|
 
 
@@ -404,6 +456,6 @@ select user, host, password from mysql.user;
 -- |----------------------------------------END------------------------------------------|
 
 
--- |------------------------------ALTER USER SECTION COMMAND-----------------------------|
+-- |---------------------------------XYZ SECTION COMMAND---------------------------------|
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 -- |----------------------------------------END------------------------------------------|
