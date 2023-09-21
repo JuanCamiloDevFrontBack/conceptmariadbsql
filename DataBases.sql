@@ -1,10 +1,37 @@
 -- |----------------------------SHOW DATABASES SECTION COMMAND---------------------------|
+
+-- Las siguientes consultas(querys)
+-- permite consultar las bases de datos creadas y existentes.
+show schemas like 'dataToSearch';
+show schemas where length('Database') > N;-- retorna la cantidad de bases de datos con las dimenciones especificadas respecto al nombre.
+
+/* Nota: la consulta sql show schemas where length('Database') > N, en la parte
+donde se indica el Database, es la columna de la tabla donde está alojadas
+las bases de datos.  */
+
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+
+-- 1.
+show schemas like 'db_test%';
+show schemas where length('Database') > 23;
+
 -- |----------------------------------------END------------------------------------------|
 
 
 -- |-------------------------SHOW CREATE DATABASE SECTION COMMAND------------------------|
+
+-- Las siguientes consultas(querys)
+-- permite consultar la base de datos indicada.
+show create schema databaseName;
+-- OR
+show create database databaseName;
+
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+
+-- 1.
+show create schema mysql;
+show create daabase mysql;
+
 -- |----------------------------------------END------------------------------------------|
 
 
