@@ -83,6 +83,36 @@ show databases;
 -- |----------------------------------------END------------------------------------------|
 
 
+-- |---------------------------------USE SECTION COMMAND---------------------------------|
+
+-- Las siguientes consultas(querys)
+-- permite usar una bases de datos y comenzar a trabajar en ella.
+use dbName;
+-- OR
+use database dbName;-- disponible solamente para la versión 11.3 de mariadb.
+
+-- permite consultar la base de datos que se esta utilizand.
+select database();-- los () son obligatorios.
+-- OR
+select schema();-- los () son obligatorios.
+
+-- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+
+-- 1.
+show schemas;
+use db1;
+select schema();
+
+-- 2.
+show schemas;
+use db1;
+select schema();
+use db2;-- se cambia de base de datos.
+select schema();
+
+-- |----------------------------------------END------------------------------------------|
+
+
 -- |-----------------------------ALTER DATABASE SECTION COMMAND--------------------------|
 
 -- Las siguientes consultas(querys)
@@ -124,7 +154,28 @@ show create schema db2;
 
 
 -- |----------------------------DROP DATABASE SECTION COMMAND----------------------------|
+
+-- Las siguientes consultas(querys)
+-- permite eliminar una base de datos.
+drop shema dbName;
+-- OR
+drop shema if exists dbName;
+drop database if exists dbName;
+
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+
+-- 1.
+show databases;
+drop schema db_test_with_database;
+show schemas;
+
+-- 2.
+show databases;
+drop schema if exists db_test_with_database;
+show warnings;
+drop schema if exists db2;
+show schemas;
+
 -- |----------------------------------------END------------------------------------------|
 
 
