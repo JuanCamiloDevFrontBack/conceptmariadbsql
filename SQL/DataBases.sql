@@ -85,12 +85,6 @@ show databases;
 
 -- |-----------------------------ALTER DATABASE SECTION COMMAND--------------------------|
 
-/* Pasos a ejecutar:
-1- Crear 3 bases de datos
-2- Mostrar la info general de 
-3- ejecutar un alter database sin nombre de base de datos
-4- listr las bases de datos e información general de ellas*/
-
 -- Las siguientes consultas(querys)
 -- permite modificar la base de datos.
 alter schema dbName CHARACTER SET charsetName;
