@@ -8,6 +8,8 @@ Nota: algunas funciones se pueden ejecutar mucho más rápido utilizando gestore
 de bases de datos, en el caso de xampp mariadb ya incorpora phpMyAdmin 
 */
 
+-- la consulta(Query) permite conocer la versión de mariadb instalada.
+select version();-- los () son obligatorios.
 
 -- |-----------------------------CREATE USER SECTION COMMAND-----------------------------|
 
