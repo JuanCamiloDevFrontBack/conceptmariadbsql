@@ -1,10 +1,11 @@
 -- |-----------------------------SHOW TABLES SECTION COMMAND-----------------------------|
 
 -- Las siguientes consultas(querys)
--- permite consultar las tablas creadas y existntes en una base de datos.
+-- permite consultar las tablas creadas y existentes en una base de datos.
 show tables;-- muestras las tablas de la base de datos en uso.
 -- OR
 show tables form dbName;-- muestra las tablas de la base de datos indicada (opcional).
+show tables from mysql\G;-- \G permite mostrar las columnas con sus valores de forma vertical, es util cuando la tabla tiene muchas columnas y no es legible en forma de tabla.
 show full tables form dbName;-- muestra todas las tablas y los tipos de tablas (opcional).
 show full tables like 'dataToSearch';-- filtra los resultados por el parámetro de búsqueda (opcional).
 show full tables form dbName like 'dataToSearch';-- (opcional).
@@ -18,6 +19,8 @@ segunda la base de datos es 'cinema' (opcional). */
 
 -- 1.
 show tables;
+-- OR
+show tables\G;-- la letra G, debe ir en mayúscula por obligación.
 
 -- 2.
 show full tables;
@@ -34,13 +37,39 @@ show full tables from mysql where Tables_in_mysql like 'ti%';
 -- |----------------------------------------END------------------------------------------|
 
 
+-- |-----------------------------CREATE TABLE SECTION COMMAND----------------------------|
+
+-- Las siguientes consultas(querys)
+-- permite crear tablas en una base de datos.
+create table tableName
+
+-- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+-- |----------------------------------------END------------------------------------------|
+
+
+-- |--------------------------SHOW TABLES STATUS SECTION COMMAND-------------------------|
+
+-- Las siguientes consultas(querys)
+-- permite consultar el estado de las tablas creadas y existentes en una base de datos.
+show table status;
+-- OR
+show table status from dbName;-- (opcional).
+show table status in dbName;-- (opcional).
+show table status in dbName where Name = 'dataToSearch';-- (opcional).
+show table status in dbName where Name like 'dataToSearch';-- (opcional).
+
+
+-- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+-- |----------------------------------------END------------------------------------------|
+
+
 -- |--------------------------SHOW CREATE TABLE SECTION COMMAND--------------------------|
 
 /* Pasos a ejecutar:
  */
 
  -- Las siguientes consultas(querys)
--- permite modificar la base de datos.
+-- permite consultar las tablas creadas y existentes en una base de datos.
 
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 -- |----------------------------------------END------------------------------------------|
