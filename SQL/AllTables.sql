@@ -41,12 +41,18 @@ show full tables from mysql where Tables_in_mysql like 'ti%';
 
 -- Las siguientes consultas(querys)
 -- permite crear tablas en una base de datos.
-CREATE [OR REPLACE] TABLE [IF NOT EXISTS] tbl_name (create_definition,...) [table_options]... [partition_options] [select_statement] { LIKE old_table_name | (LIKE old_table_name) }
-
 create table tableName (colName dataType, colName2 dataType, colName3 dataType);
 -- OR
+create table tableName (colName dataType auto_increment unique, colName2 dataType invisible, colNameN dataType);-- la cláusula INVISIBLE permite a las columnas estar ocultas cuando se realiza un select a todas las columnas y tampoco se puede insertar información en esa o esas columnas con este atributo.
+create table tableName (colName dataType unique null, colName2 dataType, colNameN dataType primary key);
 create table tableName like oldTableName;
-create table tableName (colName dataType, colName2 dataType, colName3 dataType) like oldTableName;
+create or replace table tableName (colName dataType unique null, colNameN dataType);
+create table if not exists tableName (colName dataType unique null, colNameN dataType);
+create table if not exists tableName (colName dataType unique null, colNameN dataType) max_rows = N;
+create table if not exists tableName (colName dataType unique null, colNameN dataType) min_rows = N;
+
+/* Nota: no se abordan los temas de table_options, partition_options y select_statement
+pero en la documentación de MariaDB se puede profundizar en ello. */
 
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 -- |----------------------------------------END------------------------------------------|
