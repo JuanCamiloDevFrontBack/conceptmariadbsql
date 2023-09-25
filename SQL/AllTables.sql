@@ -41,7 +41,12 @@ show full tables from mysql where Tables_in_mysql like 'ti%';
 
 -- Las siguientes consultas(querys)
 -- permite crear tablas en una base de datos.
-create table tableName
+CREATE [OR REPLACE] TABLE [IF NOT EXISTS] tbl_name (create_definition,...) [table_options]... [partition_options] [select_statement] { LIKE old_table_name | (LIKE old_table_name) }
+
+create table tableName (colName dataType, colName2 dataType, colName3 dataType);
+-- OR
+create table tableName like oldTableName;
+create table tableName (colName dataType, colName2 dataType, colName3 dataType) like oldTableName;
 
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 -- |----------------------------------------END------------------------------------------|
