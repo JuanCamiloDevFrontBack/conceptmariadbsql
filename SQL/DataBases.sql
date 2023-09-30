@@ -157,7 +157,7 @@ show create schema db2;
 
 -- Las siguientes consultas(querys)
 -- permite eliminar una base de datos.
-drop shema dbName;
+drop schema dbName;
 -- OR
 drop shema if exists dbName;
 drop database if exists dbName;

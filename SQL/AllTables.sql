@@ -4,7 +4,7 @@
 -- permite consultar las tablas creadas y existentes en una base de datos.
 show tables;-- muestras las tablas de la base de datos en uso.
 -- OR
-show tables form dbName;-- muestra las tablas de la base de datos indicada (opcional).
+show tables from dbName;-- muestra las tablas de la base de datos indicada (opcional).
 show tables from mysql\G;-- \G permite mostrar las columnas con sus valores de forma vertical, es util cuando la tabla tiene muchas columnas y no es legible en forma de tabla.
 show full tables form dbName;-- muestra todas las tablas y los tipos de tablas (opcional).
 show full tables like 'dataToSearch';-- filtra los resultados por el parámetro de búsqueda (opcional).
@@ -45,7 +45,7 @@ create table tableName (colName dataType, colName2 dataType, colName3 dataType);
 -- OR
 create table tableName (colName dataType auto_increment unique, colName2 dataType invisible, colNameN dataType);-- la cláusula INVISIBLE permite a las columnas estar ocultas cuando se realiza un select a todas las columnas y tampoco se puede insertar información en esa o esas columnas con este atributo.
 create table tableName (colName dataType unique null, colName2 dataType, colNameN dataType primary key);
-create table tableName like oldTableName;
+create table tableName like oldTableName;-- permite crear una tabla realizando por así decirlo una copia de otra ya existente.
 create or replace table tableName (colName dataType unique null, colNameN dataType);
 create table if not exists tableName (colName dataType unique null, colNameN dataType);
 create table if not exists tableName (colName dataType unique null, colNameN dataType) max_rows = N;
@@ -54,7 +54,24 @@ create table if not exists tableName (colName dataType unique null, colNameN dat
 /* Nota: no se abordan los temas de table_options, partition_options y select_statement
 pero en la documentación de MariaDB se puede profundizar en ello. */
 
+/* Nota: el query CREATE TABLE TABLEnAME LIKE OLDtABLENAME aplica una copia pero esta
+solo aplica para los atributos descriptivos de cada columna, como la cantidad de ellas, más NO 
+copia información si la tabla la tuviese. */
+
+/* Nota: mariabd, por lo menos tiene muchos tipos de datos, como por ejemplo TINYINT. BIGINT 
+SMALLINT que son numéricos, CHART, ENUM MEDIUMBLOB que son cadenas(strings), DATE, TIME DATETIME
+que son fechas y horas, entre muchos otros tipos de datos existentes, por lo menos en mariadb. */
+
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+
+-- 1.
+show tables;
+create table user (id int invisible primary key auto_increment, name text not null, second_name tinyblob null, last_name varchar(10) not null);
+show tables;
+
+-- N.
+create table if not exists test like pcs;
+
 -- |----------------------------------------END------------------------------------------|
 
 
