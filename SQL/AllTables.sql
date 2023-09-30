@@ -69,8 +69,12 @@ show tables;
 create table user (id int invisible primary key auto_increment, name text not null, second_name tinyblob null, last_name varchar(10) not null);
 show tables;
 
--- N.
-create table if not exists test like pcs;
+-- 2.
+show tables;
+desc user;
+create table if not exists client like user;
+show tables;
+desc client;
 
 -- |----------------------------------------END------------------------------------------|
 
