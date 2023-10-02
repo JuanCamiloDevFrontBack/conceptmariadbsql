@@ -92,6 +92,19 @@ show table status in dbName where Name like 'dataToSearch';-- (opcional).
 
 
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
+
+-- 1.
+show table status from db1\G;
+
+-- 2.
+show table status in db1\G;
+
+-- 3.
+show table status in db1 like 'user'\G;
+
+-- 4.
+show table status in db1 where Auto_increment = 1\G;
+
 -- |----------------------------------------END------------------------------------------|
 
 
