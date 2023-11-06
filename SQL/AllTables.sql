@@ -115,6 +115,8 @@ show table status in db1 where Auto_increment = 1\G;
 
  -- Las siguientes consultas(querys)
 -- permite consultar las tablas creadas y existentes en una base de datos.
+-- Ejecutar base de datos de los trasnformers con tablas como:
+-- transfrmer, team(Autobots ó Decepticons)
 
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 -- |----------------------------------------END------------------------------------------|
