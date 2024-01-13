@@ -1,6 +1,7 @@
 # Conceptos de Mariadb Basados en la Documentación
 
-![Imagen del Repositorio](./mariadb-svgrepo-com.svg,('width: 80px'))
+![Imagen del Repositorio](./mariadb-svgrepo-com.svg)
+<img src="./mariadb-svgrepo-com.svg" width="50%">
 
 ## Guía Conceptos Mysql MariaDB
 El presente repositorío hace referencia a una guía en la cual se visualizan
