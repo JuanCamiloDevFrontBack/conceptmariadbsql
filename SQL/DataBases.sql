@@ -56,21 +56,21 @@ se puede profundizar en ello. */
 
 -- 1.
 show databases;
-create database db_test_with_database;
+create database user_management_using_database;
 show databases;
 
 -- 2.
 show databases;
-create schema db_test_with_schema;
+create schema user_management_using_schema;
 show databases;
-create or replace schema db_test_with_schema;
+create or replace schema user_management_using_schema;
 show databases;
 
 -- 3.
 show databases;
-create schema db_test_with_schema;
+create schema user_management_using_schema;
 show databases;
-create schema if not exists db_test_with_schema;
+create schema if not exists user_management_using_schema;
 show warnings;
 show databases;
 
@@ -166,12 +166,12 @@ drop database if exists dbName;
 
 -- 1.
 show databases;
-drop schema db_test_with_database;
+drop schema db1;
 show schemas;
 
 -- 2.
 show databases;
-drop schema if exists db_test_with_database;
+drop schema if exists db1;
 show warnings;
 drop schema if exists db2;
 show schemas;
