@@ -1,5 +1,7 @@
 # Conceptos de Mariadb Basados en la Documentación
 
+![Imagen del Proyecto](./mariadb-svgrepo-com.svg)
+
 ## Guía Conceptos Mysql MariaDB
 El presente repositorío hace referencia a una guía en la cual se visualizan
 los conceptos más importante de utilizar la base de datos relacional MySQL con el
