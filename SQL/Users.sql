@@ -77,15 +77,15 @@ show create user adminMain;
 show create user testQA;
 
 -- 2.
-create or replace user dev1, dev2 with MAX_QUERIES_PER_HOUR 78 MAX_UPDATES_PER_HOUR 59;
-show create user dev1;
-show create user dev2;
+create or replace user user1, user2 with MAX_QUERIES_PER_HOUR 78 MAX_UPDATES_PER_HOUR 59;
+show create user user1;
+show create user user2;
 
 -- 3.
-create or replace user dev3 password expire;
-show create user dev3;
-create or replace user dev3 password expire default;
-show create user dev3;
+create or replace user user3 password expire;
+show create user user3;
+create or replace user user3 password expire default;
+show create user user3;
 
 /* Nota: en los ejercicios 1 y 2 al anidar la creación de usuarios los comandos
 "password expire" y "with" solo se permiten implementar al final, esto porque serán
@@ -122,28 +122,28 @@ alter user testQA identified by '789456';-- forma resumida
 select user, host, password from mysql.user;
 
 -- 2.
-alter user if exists dev4 identified by '789';
+alter user if exists user4 identified by '789';
 -- OR
-alter user if exists 'dev4'@'%' identified by '789';
+alter user if exists 'user4'@'%' identified by '789';
 show warnings;
 
 -- 3.
 select user, host, password from mysql.user;
-show create user dev1;
-show create user dev2;
-alter user dev1 identified by '123', dev2, dev4 with MAX_USER_CONNECTIONS 127;-- muestra error.
-alter user if exists dev1 identified by '123', dev2, dev4 with MAX_USER_CONNECTIONS 127;-- muestra warnings.
+show create user user1;
+show create user user2;
+alter user user1 identified by '123', user2, user4 with MAX_USER_CONNECTIONS 127;-- muestra error.
+alter user if exists user1 identified by '123', user2, user4 with MAX_USER_CONNECTIONS 127;-- muestra warnings.
 show warnings;
-show create user dev1;
-show create user dev2;
+show create user user1;
+show create user user2;
 
 -- 4.
-show create user dev2;
-show create user dev3;
-alter user if exists dev3, dev2, dev4 with MAX_USER_CONNECTIONS 127 password expire;
+show create user user2;
+show create user user3;
+alter user if exists user3, user2, user4 with MAX_USER_CONNECTIONS 127 password expire;
 show warnings;
-show create user dev2;
-show create user dev3;
+show create user user2;
+show create user user3;
 
 -- |----------------------------------------END------------------------------------------|
 
@@ -164,9 +164,9 @@ rename user 'createUser'@'oldHost' to 'createUser'@'newHost';-- cambia la ip del
 
 -- 1.
 select user, host from mysql.user;
-create user 'user1'@'localhost', devTest1, 'technicalLeader'@'192.168.0.1';
+create user 'user1'@'localhost', userTest1, 'technicalLeader'@'192.168.0.1';
 select user, host from mysql.user;
-rename user devTest1 to scrumMaster;
+rename user userTest1 to scrumMaster;
 select user, host from mysql.user;
 
 --2.
@@ -233,9 +233,9 @@ select user, host, is_role from mysql.user;
 
 -- 2.
 select * from information_schema.applicable_roles;
-create role devFront;
+create role userFront;
 select * from information_schema.applicable_roles;
-create or replace role devFront;
+create or replace role userFront;
 select * from information_schema.applicable_roles;
 
 /* Nota: en el ejercicio 2 no es muy visible el (or replace), pero para
@@ -409,7 +409,7 @@ drop role if exists roleName, roleName2, roleNameN;
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 
 -- 1.
-drop role if exists dev1, 'dev2'@'%', dev3, 'dev4'@'%';
+drop role if exists user1, 'user2'@'%', user3, 'user4'@'%';
 show warnings;
 select user, host, password from mysql.user;
 
@@ -456,7 +456,7 @@ drop user if exists userName, userName2, userNameN;
 -- |-----------------------------------EXAMPLE SECTION-----------------------------------|
 
 -- 1.
-drop user if exists dev1, 'dev2'@'%', dev3, 'dev4'@'%';
+drop user if exists user1, 'user2'@'%', user3, 'user4'@'%';
 show warnings;
 select user, host, password from mysql.user;
 
