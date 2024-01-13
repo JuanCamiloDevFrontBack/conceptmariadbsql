@@ -1,6 +1,8 @@
 # Conceptos de Mariadb Basados en la Documentación
 
+<div style="width: 100%; align-items: center">
 <img src="./mariadb-svgrepo-com.svg" width="50%">
+</div>
 
 ## Guía Conceptos Mysql MariaDB
 El presente repositorío hace referencia a una guía en la cual se visualizan
