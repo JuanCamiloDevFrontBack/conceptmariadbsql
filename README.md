@@ -13,11 +13,12 @@ que puedan tener acceso a este repositorio para de esta manera ir de a poco
 complementando la información y conocimientos entre todos como comunidad DEVS.
 
 ## Tabla de Contenido
-- Trabajando con usuarios
--     "      "  base de datos
--     "      "  tablas
--     "      "  disparadores, secuencias, procedimientos
--     "      "  rendimiento de las consultas(querys)
+Trabajando con:
+* Usuarios
+* Base de datos
+* Tablas
+* Disparadores, secuencias, procedimientos
+* Rendimiento de las consultas(querys)
 
 y muchas otras cosas más.
 
