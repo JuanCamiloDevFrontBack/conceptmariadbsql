@@ -1,4 +1,4 @@
-# Conceptos de Mariadb Basados en la Documentación
+# Conceptos de MariaDB Basados en la Documentación
 
 ## Guía Conceptos Mysql MariaDB
 El presente repositorío hace referencia a una guía en la cual se visualizan
