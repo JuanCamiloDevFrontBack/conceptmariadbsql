@@ -1,6 +1,6 @@
 # Conceptos de Mariadb Basados en la Documentación
 
-<div style="display: flex; width: 100%; align-content: center">
+<div style="display: flex; width: 100%; justify-content: center;">
 <img src="./mariadb-svgrepo-com.svg" width="50%">
 </div>
 
