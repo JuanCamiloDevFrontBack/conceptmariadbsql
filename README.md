@@ -1,9 +1,5 @@
 # Conceptos de Mariadb Basados en la Documentación
 
-<div style="display: flex; width: 100%; justify-content: center;">
-<img src="./mariadb-svgrepo-com.svg" width="50%">
-</div>
-
 ## Guía Conceptos Mysql MariaDB
 El presente repositorío hace referencia a una guía en la cual se visualizan
 los conceptos más importante de utilizar la base de datos relacional MySQL con el
